@@ -34,13 +34,14 @@ export default {
     if (!response.ok) {
       // console.log(responseData);
       const error = new Error(
-        responseData.error?.message || "Failed to authenticate. Check your login data."
+        responseData.error?.message ||
+          "Failed to authenticate. Check your login data."
       );
       throw error;
     }
 
-    // const expiresIn = +responseData.expiresIn * 1000;
-    const expiresIn = 5000;
+    const expiresIn = +responseData.expiresIn * 1000;
+    // const expiresIn = 5000;
     const expirationDate = new Date().getTime() + expiresIn;
 
     localStorage.setItem("token", responseData.idToken);
